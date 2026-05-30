@@ -4,7 +4,7 @@ class Pasien :
         self.nama_pasien = nama_pasien
         self.jenis_kelamin = jenis_kelamin
         self.umur = umur
-        self.gejawal = gejala
+        self.gejala = gejala
         self.skor =skor
 
 list_antrean = []
