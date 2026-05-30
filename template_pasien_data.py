@@ -1,3 +1,5 @@
+from data_storage_template import Pasien 
+
 list_antrean = [
     # Kategori: Gawat Darurat (Skor 41 - 50)
     Pasien("P001", "Budi Santoso", "L", 45, "Henti Jantung", 50),
