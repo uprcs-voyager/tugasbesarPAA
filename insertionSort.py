@@ -10,7 +10,7 @@ class Pasien :
 list_antrean = []
 
 
-def insertionSort(list_antrean):
+def descending_insertionSort(list_antrean):
     n = len(list_antrean)
 
     for i in range(1,n):
@@ -18,6 +18,22 @@ def insertionSort(list_antrean):
         j = i-1
 
         while j >= 0 and list_antrean[j].skor < terbaru.skor:
+            list_antrean[j + 1] = list_antrean[j]
+            j -= 1
+
+        list_antrean[j + 1] = terbaru
+
+    
+    return list_antrean
+
+def ascending_insertionSort(list_antrean):
+    n = len(list_antrean)
+
+    for i in range(1,n):
+        terbaru = list_antrean[i]
+        j = i-1
+
+        while j >= 0 and list_antrean[j].skor > terbaru.skor:
             list_antrean[j + 1] = list_antrean[j]
             j -= 1
 
@@ -67,7 +83,7 @@ def tambah_pasien_baru(list_antrean) :
 
     list_antrean.append(pasien_baru)
 
-    insertionSort(list_antrean)
+    descending_insertionSort(list_antrean)
 
     print("Data Pasien Berhasil Ditambahkan")
     return list_antrean
@@ -98,7 +114,31 @@ while pilihan_user != 3:
     if pilihan_user == 1 : 
         tambah_pasien_baru(list_antrean)
     elif pilihan_user == 2 : 
-        insertionSort(list_antrean)
+        if not list_antrean:
+            print("Saat ini belum ada data pasien dalam antrean!")
+            continue
+
+        print("\n=== PILIH JENIS PENGURUTAN ===")
+        print("1. Skor darurat tertinggi")
+        print("2. Skor darurat terendah")
+
+        while True:
+            try:
+                pilihan_sort = int(input("Masukkan pilihan (1-2): "))
+
+                if pilihan_sort == 1:
+                    descending_insertionSort(list_antrean)
+                    break
+
+                elif pilihan_sort == 2:
+                    ascending_insertionSort(list_antrean)
+                    break
+
+                else:
+                    print("Pilihan hanya 1 atau 2!")
+
+            except ValueError:
+                print("Input harus berupa angka!")
 
         print("\n=== DAFTAR ANTREAN PASIEN ===")
         for pasien in list_antrean:
