@@ -26,6 +26,9 @@ class Pasien:
 #     st.session_state.list_antrean = [
 #         Pasien("1", "John Walker", "Lakik-lakik", 45, "Henti Jantung", 50),
 #         Pasien("2", "Arthur Morgan", "Lakik-lakik", 44, "tuberculosis", 45),
+#         Pasien("3", "john wick", "Lakik-lakik", 30, "kena peluru", 20),
+#         Pasien("4", "Luo Yi", "Perempuan", 23, "digigit serangga", 10),
+#         Pasien("2", "Layla", "Perempuan", 21, "kena peluru", 20),
 #     ]
 
 
@@ -199,14 +202,21 @@ elif menu == "Tambah Pasien":
         
         submit = st.form_submit_button("Simpan Data")
         if submit:
-            if id_baru and nama and gejala:
+            # cek apakah ID baru sama dengan ID yang sudah ada di sistem
+            id_terpakai = any(pasien.id_pasien == id_baru for pasien in st.session_state.list_antrean)
+            
+            # cek apakah input issinya spasi doang atau ksong
+            if not nama.strip() or not gejala.strip():
+                st.error("Gagal ay, Nama Lengkap dan Gejala tidak boleh kosong atau hanya berisi spasi.")
+
+            elif id_terpakai:
+                st.error(f"Gagal! ID Pasien {id_baru} sudah terdaftar. Silakan gunakan ID lain.")
+            else:
                 pasien_baru = Pasien(id_baru, nama, jenis_kelamin, umur, gejala, skor)
                 st.session_state.list_antrean.append(pasien_baru)
                 # Sortir langsung habis ditambah
                 st.session_state.list_antrean = insertionSort(st.session_state.list_antrean)
                 st.success("Data berhasil ditambahkan dan antrean diurutkan ulang menggunakan algoritma insertion soert")
-            else:
-                st.error("Semua field teks (Nama & Gejala) harus diisi.")
 
 
 
