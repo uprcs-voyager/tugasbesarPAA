@@ -42,7 +42,7 @@ def data_ke_dataframe(data_list):
         "ID": p.id_pasien, 
         "Nama": p.nama_pasien, 
         "Lakie Lakie / Perempuan": p.jenis_kelamin.upper(), 
-        "Umur": p.umur, 
+        "Umur (tahun)": p.umur, 
         "Gejala": p.gejala, 
         "Skor": p.skor, 
         "Kategori": p.kategori
