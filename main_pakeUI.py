@@ -22,18 +22,18 @@ class Pasien:
         return "Skor Tidak Valid"
 
 # Inisialisasi Session State (Pengganti Database)
-# if 'list_antrean' not in st.session_state:
-#     st.session_state.list_antrean = [
-#         Pasien("1", "John Walker", "Lakik-lakik", 45, "Henti Jantung", 50),
-#         Pasien("2", "Arthur Morgan", "Lakik-lakik", 44, "tuberculosis", 45),
-#         Pasien("3", "john wick", "Lakik-lakik", 30, "kena peluru", 20),
-#         Pasien("4", "Luo Yi", "Perempuan", 23, "digigit serangga", 10),
-#         Pasien("2", "Layla", "Perempuan", 21, "kena peluru", 20),
-#     ]
-
-
 if 'list_antrean' not in st.session_state:
-    st.session_state.list_antrean = []
+    st.session_state.list_antrean = [
+        Pasien(1, "John Walker", "Lakik-lakik", 45, "Henti Jantung", 50),
+        Pasien(2, "Arthur Morgan", "Lakik-lakik", 44, "tuberculosis", 45),
+        Pasien(3, "john wick", "Lakik-lakik", 30, "kena peluru", 20),
+        Pasien(4, "Luo Yi", "Perempuan", 23, "digigit serangga", 10),
+        Pasien(5, "Layla", "Perempuan", 21, "kena peluru", 20),
+    ]
+
+
+# if 'list_antrean' not in st.session_state:
+#     st.session_state.list_antrean = []
 
 def data_ke_dataframe(data_list):
     #Konversi objek ke format tabel Pandassssssss 
@@ -173,9 +173,9 @@ if menu == "Daftar Antrean":
         urutan = st.selectbox("Tampilkan Berdasarkan Urutan:", ["Descending (Kritis -> Ringan)", "Ascending (Ringan -> Kritis)"])
         
         if urutan == "Ascending (Ringan -> Kritis)":
-            st.dataframe(data_ke_dataframe(data_utama[::-1]), use_container_width=True, hide_index=True)
+            st.table(data_ke_dataframe(data_utama[::-1]).set_index("ID"))
         else:
-            st.dataframe(data_ke_dataframe(data_utama), use_container_width=True, hide_index=True)
+            st.table(data_ke_dataframe(data_utama).set_index("ID"))
             
         st.caption(f"Total Pasien: {len(data_utama)}")
 
@@ -243,7 +243,7 @@ elif menu == "Cari Kategori":
         else:
             hasil_data = data_utama[idx_kiri : idx_kanan + 1]
             st.success(f"Ditemukan {len(hasil_data)} pasien pada kategori {pilihan}")
-            st.dataframe(data_ke_dataframe(hasil_data), use_container_width=True, hide_index=True)
+            st.table(data_ke_dataframe(hasil_data).set_index("ID"))
 
 
 
@@ -275,4 +275,4 @@ elif menu == "Cari Skor Eksak":
                 
             hasil_data = data_utama[batas_kiri : batas_kanan + 1]
             st.success(f"Ditemukan {len(hasil_data)} pasien dengan skor {target}")
-            st.dataframe(data_ke_dataframe(hasil_data), use_container_width=True, hide_index=True)
+            st.table(data_ke_dataframe(hasil_data).set_index("ID"))
