@@ -24,9 +24,9 @@ class Pasien:
 # Inisialisasi Session State (Pengganti Database)
 if 'list_antrean' not in st.session_state:
     st.session_state.list_antrean = [
-        Pasien(1, "John Walker", "Lakik-lakik", 45, "Henti Jantung", 50),
-        Pasien(2, "Arthur Morgan", "Lakik-lakik", 44, "tuberculosis", 45),
-        Pasien(3, "john wick", "Lakik-lakik", 30, "kena peluru", 20),
+        Pasien(1, "John Walker", "LAkie-LAkie", 45, "Henti Jantung", 50),
+        Pasien(2, "Arthur Morgan", "LAkie-LAkie", 44, "tuberculosis", 45),
+        Pasien(3, "john wick", "LAkie-LAkie", 30, "kena peluru", 20),
         Pasien(4, "Luo Yi", "Perempuan", 23, "digigit serangga", 10),
         Pasien(5, "Layla", "Perempuan", 21, "kena peluru", 20),
     ]
